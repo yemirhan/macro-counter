@@ -1,11 +1,10 @@
-import { notFound } from "next/navigation";
-
 import { dashboardConfig } from "@/config/dashboard";
 import { getCurrentUser } from "@/lib/session";
 import { MainNav } from "@/components/main-nav";
 import { UserAccountNav } from "@/components/user-account-nav";
 import { ModeToggle } from "@/components/toggle-theme";
 import { DashboardNav } from "@/components/dashboard-nav";
+import { redirect } from "next/navigation";
 
 interface DashboardLayoutProps {
   children?: React.ReactNode;
@@ -17,12 +16,12 @@ export default async function DashboardLayout({
   const user = await getCurrentUser();
 
   if (!user) {
-    return notFound();
+    return redirect("/login");
   }
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <header className="bg-background sticky top-0 z-40 border-b">
+      <header className="sticky top-0 z-40 border-b bg-background">
         <div className="container flex h-16 items-center justify-between py-4">
           <MainNav items={dashboardConfig.mainNav} />
           <div className="flex flex-row gap-2">

@@ -3,7 +3,7 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-const Page = () => {
+export default function Page() {
   return (
     <div>
       <Header heading="Today" text="What You've eaten today.">
@@ -15,6 +15,4 @@ const Page = () => {
       </Header>
     </div>
   );
-};
-
-export default Page;
+}
