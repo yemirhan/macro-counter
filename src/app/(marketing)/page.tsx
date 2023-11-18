@@ -3,8 +3,7 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-const Page = (props) => {
-  const day = new Date();
+const Page = () => {
   return (
     <div>
       <Header heading="Today" text="What You've eaten today.">

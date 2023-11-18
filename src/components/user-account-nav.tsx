@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { User } from "next-auth";
+import type { User } from "next-auth";
 import { signOut } from "next-auth/react";
 
 import {
@@ -22,7 +22,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          user={{ name: user.name || null, image: user.image || null }}
+          user={{ name: user.name ?? null, image: user.image ?? null }}
           className="h-8 w-8 rounded-md"
         />
       </DropdownMenuTrigger>
@@ -31,7 +31,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium">{user.name}</p>}
             {user.email && (
-              <p className="text-muted-foreground w-[200px] truncate text-sm">
+              <p className="w-[200px] truncate text-sm text-muted-foreground">
                 {user.email}
               </p>
             )}
@@ -54,7 +54,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             event.preventDefault();
             signOut({
               callbackUrl: `${window.location.origin}/login`,
-            }).catch((e: any) => console.err(e));
+            }).catch((e) => console.error(e));
           }}
         >
           Sign out
